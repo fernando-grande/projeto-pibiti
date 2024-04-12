@@ -11,16 +11,10 @@ export function useFormSteps(){
         setCurrentForm((currentForm) => currentForm - 1)
     }
 
-    const handleSubmit = () => {
-        console.log("submited!!")
-    }
-
-
     return {
         currentForm,
         nextForm,
-        prevForm,
-        handleSubmit
+        prevForm
     }
 
 }

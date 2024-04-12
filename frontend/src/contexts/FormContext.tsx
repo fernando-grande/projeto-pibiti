@@ -1,17 +1,17 @@
 import { createContext, useState } from "react";
 
-// interface FormContextType {
-//     values: { [key: string]: any }
-//     setValues: (values: { [key: string]: any }) => void
-// }
-
-export const FormContext = createContext({} as any)
+export const FormContext = createContext<any>({})
 
 export function FormProvider({children}: any) {
     const [values, setValues] = useState<any>({});
 
+    const handleSubmit = (onSubmit: any) => (data: any) => {
+        setValues((prevData: any) => ({...prevData, ...data}))
+        onSubmit(data)
+    }
+
     return (
-        <FormContext.Provider value={{ values, setValues }}>
+        <FormContext.Provider value={{ values, handleSubmit }}>
             {children}
         </FormContext.Provider>
     )

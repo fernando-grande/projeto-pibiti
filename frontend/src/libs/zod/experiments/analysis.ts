@@ -1,18 +1,21 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const analysisSchema = z.object({
     implicationTreatmentDeveloped: z.string(),
     mortalityRate: z.string(),
-    conclusionValidity: z.boolean(), // 
-    constructoValidity: z.boolean(), // 
-    externalValidity: z.boolean(),
-    internalValidity: z.boolean(),
+    conclusionValidity: z.string(),  
+    constructoValidity: z.string(), 
+    externalValidity: z.string(),
+    internalValidity: z.string(),
     effectSize: z.string(),
     statisticalTool: z.string(),
     descriptiveStatistics: z.string(),
     correlation: z.boolean(),
     hypothesisTest: z.boolean(),
     normalityTest: z.boolean()
+}).refine(data => data.correlation || data.hypothesisTest || data.normalityTest, {
+    message: "Please, select at least one option!",
+    path: ['correlation', 'hypothesisTest', 'normalityTest'],
 })
 
 export type AnalysisTypeSchema = z.infer<typeof analysisSchema>
