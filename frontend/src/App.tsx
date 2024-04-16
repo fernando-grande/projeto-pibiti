@@ -5,11 +5,11 @@ import { FormProvider } from "./contexts/FormContext";
 
 export function App() {
   return (
-    <FormProvider>
       <BrowserRouter>
-        <MainRoutes/>
+        <FormProvider>
+          <MainRoutes/>
+        </FormProvider>
       </BrowserRouter>
-    </FormProvider>
   )
 }
 

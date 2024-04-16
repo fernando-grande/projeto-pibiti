@@ -2,15 +2,14 @@ import { useForm } from "react-hook-form";
 import { ExperimentLayout } from "../../layouts/forms/ExperimentLayout";
 import { experimentPlanningSchema, ExperimentPlanningTypeSchema } from "../../libs/zod/experiments/experimentPlanning";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext } from "react";
-import { FormContext } from "../../contexts/FormContext";
 
 interface ExperimentPlanningProps {
     onNext: () => void,
-    onPrev: () => void
+    onPrev: () => void,
+    submitForm: (data: any) => void
 }
 
-export function ExperimentPlanning({onNext, onPrev}: ExperimentPlanningProps) {
+export function ExperimentPlanning({ onNext, onPrev, submitForm }: ExperimentPlanningProps) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<ExperimentPlanningTypeSchema>({
         resolver: zodResolver(experimentPlanningSchema),
@@ -18,7 +17,7 @@ export function ExperimentPlanning({onNext, onPrev}: ExperimentPlanningProps) {
 
     return (
         <ExperimentLayout>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
+            <form onSubmit={handleSubmit((data) => { submitForm(data); onNext(); })} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
                 <p className="font-bold text-2xl mb-6">EXPERIMENT PLANNING</p>
 
                 <label htmlFor="task">Task:</label>
@@ -114,14 +113,13 @@ export function ExperimentPlanning({onNext, onPrev}: ExperimentPlanningProps) {
                 {errors.materialValidation
                  && <span>{errors.materialValidation.message}</span>}
 
-                <button onClick={onNext} type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
-                    NEXT
-                </button>
-
                 <button onClick={onPrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     PREV
                 </button>
 
+                <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                    NEXT
+                </button>
             </form>
         </ExperimentLayout>
     )

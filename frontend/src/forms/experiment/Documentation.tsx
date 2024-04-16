@@ -2,22 +2,22 @@ import { useForm } from "react-hook-form";
 import { ExperimentLayout } from "../../layouts/forms/ExperimentLayout";
 import { documentationSchema, DocumentationTypeSchema } from "../../libs/zod/experiments/documentation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 
-export function Documentation() {
-    const [output, setOutput] = useState('')
+interface DocumentationProps {
+    onNext: () => void,
+    onPrev: () => void,
+    submitForm: (data: any) => void
+}
+
+export function Documentation({ onNext, onPrev, submitForm }: DocumentationProps) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<DocumentationTypeSchema>({
         resolver: zodResolver(documentationSchema),
     })
 
-    function createData(data: any) {
-        setOutput(JSON.stringify(data, null, 2))
-    }
-
     return (
         <ExperimentLayout>
-            <form onSubmit={handleSubmit(createData)} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
+            <form onSubmit={handleSubmit((data) => { submitForm(data), onNext() })} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
                 <p className="font-bold text-2xl mb-6">DOCUMENTATION</p>
 
                 <label htmlFor="domain">Domain:</label>
@@ -36,11 +36,13 @@ export function Documentation() {
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentalTemplate')} />
                 {errors.experimentalTemplate && <span>{errors.experimentalTemplate.message}</span>}
 
-                <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
-                    PRINT DATA
+                <button onClick={onPrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                    PREV
                 </button>
 
-                <pre>{output}</pre>
+                <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                    SUBMIT
+                </button>
             </form>
         </ExperimentLayout>
     )

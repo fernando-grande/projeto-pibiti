@@ -2,22 +2,22 @@ import { useForm } from "react-hook-form";
 import { ExperimentLayout } from "../../layouts/forms/ExperimentLayout";
 import { analysisSchema, AnalysisTypeSchema } from "../../libs/zod/experiments/analysis";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 
-export function Analysis() {
-    const [output, setOutput] = useState('')
+interface AnalysisProps {
+    onNext: () => void,
+    onPrev: () => void,
+    submitForm: (data: any) => void
+}
+
+export function Analysis({ onNext, onPrev, submitForm }: AnalysisProps) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<AnalysisTypeSchema>({
         resolver: zodResolver(analysisSchema),
     })
 
-    function createData(data: any) {
-        setOutput(JSON.stringify(data, null, 2))
-    }
-
     return (
         <ExperimentLayout>
-            <form onSubmit={handleSubmit(createData)} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
+            <form onSubmit={handleSubmit((data) => { submitForm(data); onNext(); })} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
                 <p className="font-bold text-2xl mb-6">ANALYSIS</p>
 
                 <label htmlFor="implicationTreatmentDeveloped">Implication of the Treatment Developed:</label>
@@ -30,7 +30,7 @@ export function Analysis() {
 
                 <p>Threats to Validity</p>
 
-                <label htmlFor="pilotProject">Conclusion Validity:</label>
+                <label htmlFor="conclusionValidity">Conclusion Validity:</label>
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('conclusionValidity')} />
                 {errors.conclusionValidity && <span>{errors.conclusionValidity.message}</span>}
 
@@ -73,10 +73,13 @@ export function Analysis() {
                 {errors.normalityTest && <span>{errors.normalityTest.message}</span>}
 
                 <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
-                    PRINT DATA
+                    NEXT
                 </button>
 
-                <pre>{output}</pre>
+                <button onClick={onPrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                    PREV
+                </button>
+
             </form>
         </ExperimentLayout>
     )

@@ -1,12 +1,9 @@
-import { useFormExperiment } from "../../hooks/useFormExperiment";
-import { MainLayout } from "../../layouts/screens/MainLayout";
+import { useFormContext } from "../../hooks/useFormContext";
 
 export function PrintForm() {
-    const { values } = useFormExperiment()
+    const { values } = useFormContext()
 
     return (
-        <MainLayout>
-            <pre>{JSON.stringify(values, null, 2)}</pre>
-        </MainLayout>
+        <pre>{JSON.stringify(values, null, 2)}</pre>
     )
 }
