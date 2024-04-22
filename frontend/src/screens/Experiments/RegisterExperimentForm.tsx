@@ -11,7 +11,7 @@ import { Documentation } from "../../forms/experiment/Documentation";
 export function RegisterExperimentForm() {
     const { currentForm, nextForm, prevForm } = useFormSteps()
 
-    const { setValues } = useFormContext()
+    const { values, setValues } = useFormContext()
 
     const submitForm = (data: any) => {
         setValues((prevValues: any) => ({
@@ -24,23 +24,23 @@ export function RegisterExperimentForm() {
         switch(currentForm) {
             case 1:
                 return (
-                    <GeneralInformation onNext={nextForm} submitForm={submitForm}/>
+                    <GeneralInformation onNext={nextForm} submitForm={submitForm} formData={values}/>
                 )
             case 2:
                 return (
-                    <ExperimentPlanning onNext={nextForm} onPrev={prevForm} submitForm={submitForm}/>
+                    <ExperimentPlanning onNext={nextForm} onPrev={prevForm} submitForm={submitForm} formData={values}/>
                 )
             case 3:
                 return (
-                    <Execution onNext={nextForm} onPrev={prevForm} submitForm={submitForm}/>
+                    <Execution onNext={nextForm} onPrev={prevForm} submitForm={submitForm} formData={values}/>
                 )
             case 4:
                 return (
-                    <Analysis onNext={nextForm} onPrev={prevForm} submitForm={submitForm}/>
+                    <Analysis onNext={nextForm} onPrev={prevForm} submitForm={submitForm} formData={values}/>
                 )
             case 5:
                 return (
-                    <Documentation onNext={nextForm} onPrev={prevForm} submitForm={submitForm}/>
+                    <Documentation onNext={nextForm} onPrev={prevForm} submitForm={submitForm} formData={values}/>
                 )
             case 6:
                 return (

@@ -5,13 +5,15 @@ import { useForm } from "react-hook-form";
 
 interface generalInformationProps {
     onNext: () => void,
-    submitForm: (data: any) => void
+    submitForm: (data: any) => void,
+    formData: any
 }
 
-export function GeneralInformation({ onNext, submitForm }: generalInformationProps) {
+export function GeneralInformation({ onNext, submitForm, formData }: generalInformationProps) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<GeneralInfoTypeSchema>({
         resolver: zodResolver(generalInfoSchema),
+        defaultValues: formData,
     })
 
     return (

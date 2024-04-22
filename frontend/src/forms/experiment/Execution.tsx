@@ -6,14 +6,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 interface ExecutionProps {
     onNext: () => void,
     onPrev: () => void,
-    submitForm: (data: any) => void
+    submitForm: (data: any) => void,
+    formData: any
 }
 
-export function Execution( {onNext, onPrev, submitForm }: ExecutionProps) {
+export function Execution( {onNext, onPrev, submitForm, formData }: ExecutionProps) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<ExecutionTypeSchema>({
         resolver: zodResolver(executionSchema),
+        defaultValues: formData,
     })
+
+    const handlePrev = () => {
+        const data = Object.fromEntries(new FormData(document.querySelector("form") as HTMLFormElement).entries())
+        submitForm(data)
+        onPrev()
+    }
 
     return (
         <ExperimentLayout>
@@ -44,7 +52,7 @@ export function Execution( {onNext, onPrev, submitForm }: ExecutionProps) {
                 <input type="date" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentConductionDate')} />
                 {errors.experimentConductionDate && <span>{errors.experimentConductionDate.message}</span>}
 
-                <button onClick={onPrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                <button onClick={handlePrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     PREV
                 </button>
 

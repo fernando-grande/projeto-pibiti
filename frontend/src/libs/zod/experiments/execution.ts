@@ -1,12 +1,12 @@
 import { z } from "zod"
 
 export const executionSchema = z.object({
-    dataCollect: z.string(),
-    training: z.string(),
-    pilotProject: z.string(),
-    experimentConduction: z.string(),
+    dataCollect: z.string().min(1),
+    training: z.string().min(1),
+    pilotProject: z.string().min(1),
+    experimentConduction: z.string().min(1),
     experimentConductionDate: z.coerce.date(),
-    experimentConductionPlace: z.string()
+    experimentConductionPlace: z.string().min(1)
 })
 
 export type ExecutionTypeSchema = z.infer<typeof executionSchema>

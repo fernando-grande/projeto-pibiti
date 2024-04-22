@@ -6,14 +6,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 interface DocumentationProps {
     onNext: () => void,
     onPrev: () => void,
-    submitForm: (data: any) => void
+    submitForm: (data: any) => void,
+    formData: any
 }
 
-export function Documentation({ onNext, onPrev, submitForm }: DocumentationProps) {
+export function Documentation({ onNext, onPrev, submitForm, formData }: DocumentationProps) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<DocumentationTypeSchema>({
         resolver: zodResolver(documentationSchema),
+        defaultValues: formData,
     })
+
+    const handlePrev = () => {
+        const data = Object.fromEntries(new FormData(document.querySelector("form") as HTMLFormElement).entries())
+        submitForm(data)
+        onPrev()
+    }
 
     return (
         <ExperimentLayout>
@@ -36,7 +44,7 @@ export function Documentation({ onNext, onPrev, submitForm }: DocumentationProps
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentalTemplate')} />
                 {errors.experimentalTemplate && <span>{errors.experimentalTemplate.message}</span>}
 
-                <button onClick={onPrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                <button onClick={handlePrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     PREV
                 </button>
 

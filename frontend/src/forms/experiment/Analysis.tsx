@@ -6,14 +6,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 interface AnalysisProps {
     onNext: () => void,
     onPrev: () => void,
-    submitForm: (data: any) => void
+    submitForm: (data: any) => void,
+    formData: any
 }
 
-export function Analysis({ onNext, onPrev, submitForm }: AnalysisProps) {
+export function Analysis({ onNext, onPrev, submitForm, formData }: AnalysisProps) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<AnalysisTypeSchema>({
         resolver: zodResolver(analysisSchema),
+        defaultValues: formData,
     })
+
+    const handlePrev = () => {
+        const data = Object.fromEntries(new FormData(document.querySelector("form") as HTMLFormElement).entries())
+        submitForm(data)
+        onPrev()
+    }
 
     return (
         <ExperimentLayout>
@@ -76,7 +84,7 @@ export function Analysis({ onNext, onPrev, submitForm }: AnalysisProps) {
                     NEXT
                 </button>
 
-                <button onClick={onPrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                <button onClick={handlePrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     PREV
                 </button>
 

@@ -6,14 +6,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 interface ExperimentPlanningProps {
     onNext: () => void,
     onPrev: () => void,
-    submitForm: (data: any) => void
+    submitForm: (data: any) => void,
+    formData: any
 }
 
-export function ExperimentPlanning({ onNext, onPrev, submitForm }: ExperimentPlanningProps) {
+export function ExperimentPlanning({ onNext, onPrev, submitForm, formData }: ExperimentPlanningProps) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<ExperimentPlanningTypeSchema>({
         resolver: zodResolver(experimentPlanningSchema),
+        defaultValues: formData,
     })
+
+    const handlePrev = () => {
+        const data = Object.fromEntries(new FormData(document.querySelector("form") as HTMLFormElement).entries())
+        submitForm(data)
+        onPrev()
+    }
 
     return (
         <ExperimentLayout>
@@ -113,7 +121,7 @@ export function ExperimentPlanning({ onNext, onPrev, submitForm }: ExperimentPla
                 {errors.materialValidation
                  && <span>{errors.materialValidation.message}</span>}
 
-                <button onClick={onPrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                <button onClick={handlePrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     PREV
                 </button>
 

@@ -1,26 +1,26 @@
 import { z } from "zod"
 
 export const experimentPlanningSchema = z.object({
-    task: z.string(),
-    sampleSize: z.string(),
-    experimentalPackage: z.string(),
+    task: z.string().min(1),
+    sampleSize: z.string().min(1),
+    experimentalPackage: z.string().min(1),
     nuleHypothesis: z.string(),        // -> pelo menos 1
     alternativeHypothesis: z.string(), // 
-    independentVariables: z.string(),
-    dependentVariables: z.string(),
+    independentVariables: z.string().min(1),
+    dependentVariables: z.string().min(1),
     simpleRandomSampling: z.boolean(),     //
     systematicSampling: z.boolean(),       //
     stratifiedRandomSampling: z.boolean(), // -> apenas 1
     convenienceSampling: z.boolean(),      //
-    balancing: z.string(),
-    block: z.string(),
-    randomness: z.string(),
+    balancing: z.string().min(1),
+    block: z.string().min(1),
+    randomness: z.string().min(1),
     oneFactorTwoTreatments: z.boolean(),          // -> apenas 1
     oneFactorPlusTwoTreatments: z.boolean(),      // 
     twoFactorsTwoTreatments: z.boolean(),         //
     plusTwoFactorsEachTwoTreatments: z.boolean(), //
-    artifact: z.string(),
-    materialValidation: z.string()
+    artifact: z.string().min(1),
+    materialValidation: z.string().min(1)
 }).refine(data => {
     //Hypothesis
     const verifyHypothesisFill = data.nuleHypothesis.trim() !== '' || data.alternativeHypothesis.trim() !== ''
