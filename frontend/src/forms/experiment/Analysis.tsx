@@ -68,6 +68,8 @@ export function Analysis({ onNext, onPrev, submitForm, formData }: AnalysisProps
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('descriptiveStatistics')} />
                 {errors.descriptiveStatistics && <span>{errors.descriptiveStatistics.message}</span>}
 
+                <p>Inferential Statistics</p>
+
                 <label htmlFor="correlation">Correlation:</label>
                 <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('correlation')} />
                 {errors.correlation && <span>{errors.correlation.message}</span>}
@@ -79,6 +81,10 @@ export function Analysis({ onNext, onPrev, submitForm, formData }: AnalysisProps
                 <label htmlFor="normalityTest">Normality Test:</label>
                 <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('normalityTest')} />
                 {errors.normalityTest && <span>{errors.normalityTest.message}</span>}
+
+                <label htmlFor="inferentialStatisticsDescription">Describe the utilization of the Inferential Statistics Method:</label>
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('inferentialStatisticsDescription')} />
+                {errors.inferentialStatisticsDescription && <span>{errors.inferentialStatisticsDescription.message}</span>}
 
                 <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     NEXT

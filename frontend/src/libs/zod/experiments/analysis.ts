@@ -12,7 +12,8 @@ export const analysisSchema = z.object({
     descriptiveStatistics: z.string().min(1),
     correlation: z.boolean(),
     hypothesisTest: z.boolean(),
-    normalityTest: z.boolean()
+    normalityTest: z.boolean(),
+    inferentialStatisticsDescription: z.string().min(1)
 }).refine(data => data.correlation || data.hypothesisTest || data.normalityTest, {
     message: "Please, select at least one option!",
     path: ['correlation', 'hypothesisTest', 'normalityTest'],

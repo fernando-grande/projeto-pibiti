@@ -56,7 +56,7 @@ export function ExperimentPlanning({ onNext, onPrev, submitForm, formData }: Exp
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('independentVariables')} />
                 {errors.independentVariables && <span>{errors.independentVariables.message}</span>}
 
-                <label htmlFor="dependentVariables">dependentVariables:</label>
+                <label htmlFor="dependentVariables">Dependent Variables:</label>
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('dependentVariables')} />
                 {errors.dependentVariables&& <span>{errors.dependentVariables.message}</span>}
 

@@ -48,9 +48,13 @@ export function Execution( {onNext, onPrev, submitForm, formData }: ExecutionPro
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentConductionPlace')} />
                 {errors.experimentConductionPlace && <span>{errors.experimentConductionPlace.message}</span>}
 
-                <label htmlFor="experimentConductionDate">Experiment Conduction Date:</label>
-                <input type="date" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentConductionDate')} />
-                {errors.experimentConductionDate && <span>{errors.experimentConductionDate.message}</span>}
+                <label htmlFor="experimentConductionStartDate">Experiment Conduction Start Date:</label>
+                <input type="date" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentConductionStartDate')} />
+                {errors.experimentConductionStartDate && <span>{errors.experimentConductionStartDate.message}</span>}
+
+                <label htmlFor="experimentConductionFinalDate">Experiment Conduction Final Date:</label>
+                <input type="date" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentConductionFinalDate')} />
+                {errors.experimentConductionFinalDate && <span>{errors.experimentConductionFinalDate.message}</span>}
 
                 <button onClick={handlePrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     PREV
