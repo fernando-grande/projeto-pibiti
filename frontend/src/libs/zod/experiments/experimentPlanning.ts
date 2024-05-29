@@ -45,5 +45,3 @@ export const experimentPlanningSchema = z.object({
     message: "Please, select just one option about factors and treatments!",
     path: [ 'oneFactorTwoTreatments', 'oneFactorPlusTwoTreatments', 'twoFactorsTwoTreatments', 'plusTwoFactorsEachTwoTreatments' ],
 })
-
-export type ExperimentPlanningTypeSchema = z.infer<typeof experimentPlanningSchema>

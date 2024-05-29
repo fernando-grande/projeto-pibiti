@@ -6,5 +6,3 @@ export const documentationSchema = z.object({
     result: z.string().min(1),
     experimentalTemplate: z.string().min(1)
 })
-
-export type DocumentationTypeSchema = z.infer<typeof documentationSchema>

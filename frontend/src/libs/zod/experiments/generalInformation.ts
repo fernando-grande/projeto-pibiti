@@ -6,5 +6,3 @@ export const generalInfoSchema = z.object({
     addres: z.string(),
     contactEmail: z.string()
 })
-
-export type GeneralInfoTypeSchema = z.infer<typeof generalInfoSchema>

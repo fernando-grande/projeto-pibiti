@@ -1,50 +1,32 @@
-import { useForm } from "react-hook-form";
+import { useFormContext } from "../../hooks/useFormContext";
 import { ExperimentLayout } from "../../layouts/forms/ExperimentLayout";
-import { documentationSchema, DocumentationTypeSchema } from "../../libs/zod/experiments/documentation";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-interface DocumentationProps {
-    onNext: () => void,
-    onPrev: () => void,
-    submitForm: (data: any) => void,
-    formData: any
-}
+export function Documentation() {
 
-export function Documentation({ onNext, onPrev, submitForm, formData }: DocumentationProps) {
-
-    const { register, handleSubmit, formState: { errors } } = useForm<DocumentationTypeSchema>({
-        resolver: zodResolver(documentationSchema),
-        defaultValues: formData,
-    })
-
-    const handlePrev = () => {
-        const data = Object.fromEntries(new FormData(document.querySelector("form") as HTMLFormElement).entries())
-        submitForm(data)
-        onPrev()
-    }
+    const { handleSubmit, register, prevForm, errors } = useFormContext()
 
     return (
         <ExperimentLayout>
-            <form onSubmit={handleSubmit((data) => { submitForm(data), onNext() })} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
+            <form onSubmit={handleSubmit} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
                 <p className="font-bold text-2xl mb-6">DOCUMENTATION</p>
 
                 <label htmlFor="domain">Domain:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('domain')} />
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.domain')} />
                 {errors.domain && <span>{errors.domain.message}</span>}
 
                 <label htmlFor="goal">Goal:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('goal')} />
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.goal')} />
                 {errors.goal && <span>{errors.goal.message}</span>}
 
                 <label htmlFor="result">Result:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('result')} />
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.result')} />
                 {errors.result && <span>{errors.result.message}</span>}
 
                 <label htmlFor="experimentalTemplate">Experimental Template:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentalTemplate')} />
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.experimentalTemplate')} />
                 {errors.experimentalTemplate && <span>{errors.experimentalTemplate.message}</span>}
 
-                <button onClick={handlePrev} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                <button onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     PREV
                 </button>
 

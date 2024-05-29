@@ -9,5 +9,3 @@ export const executionSchema = z.object({
     experimentConductionFinalDate: z.coerce.date(),
     experimentConductionPlace: z.string().min(1)
 })
-
-export type ExecutionTypeSchema = z.infer<typeof executionSchema>
