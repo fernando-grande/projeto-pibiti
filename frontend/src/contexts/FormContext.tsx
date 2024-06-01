@@ -1,20 +1,20 @@
 import { createContext, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UseFormGetValues, UseFormRegister, useForm } from "react-hook-form";
-import { experimentFormSchema , ExperimentFormTypeSchema } from "../libs/zod/forms/expFormSchema";
+import { FieldErrors, UseFormGetValues, UseFormRegister, useForm } from "react-hook-form";
+import { experimentSchema, ExperimentTypeSchema } from "../libs/zod/experiment/experiment";
 
 
-interface IFormContext {
+interface IExperimentFormContext {
     nextForm: () => void,
     prevForm: () => void,
     currentForm: number,
-    register: UseFormRegister<ExperimentFormTypeSchema>,
-    getValues: UseFormGetValues<ExperimentFormTypeSchema>,
-    handleSubmit: (e?: React.BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
-    errors: any
+    register: UseFormRegister<ExperimentTypeSchema>,
+    getValues: UseFormGetValues<ExperimentTypeSchema>,
+    handleSubmit: (e?: React.BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>,
+    errors: FieldErrors<ExperimentTypeSchema>
 }
 
-export const FormContext = createContext({} as IFormContext)
+export const ExperimentFormContext = createContext({} as IExperimentFormContext)
 
 export function FormProvider({ children }: any) {
     const [currentForm, setCurrentForm] = useState<number>(1)
@@ -24,8 +24,8 @@ export function FormProvider({ children }: any) {
         handleSubmit: hookFormSubmit,
         getValues,
         formState: { errors }
-    } = useForm<ExperimentFormTypeSchema>({
-        resolver: zodResolver(experimentFormSchema)
+    } = useForm<ExperimentTypeSchema>({
+        resolver: zodResolver(experimentSchema)
     })
 
     const nextForm = () => {
@@ -42,7 +42,7 @@ export function FormProvider({ children }: any) {
     }))
     
     return (
-        <FormContext.Provider value={{ 
+        <ExperimentFormContext.Provider value={{ 
             currentForm,
             nextForm,
             prevForm,
@@ -52,6 +52,6 @@ export function FormProvider({ children }: any) {
             errors
         }}>
             {children}
-        </FormContext.Provider>
+        </ExperimentFormContext.Provider>
     )
 }

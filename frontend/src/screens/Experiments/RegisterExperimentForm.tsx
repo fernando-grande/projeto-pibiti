@@ -1,5 +1,5 @@
 import { MainLayout } from "../../layouts/screens/MainLayout";
-import { GeneralInformation } from "../../forms/experiment/GeneralInformation";
+import { GeneralInformation } from "../../forms/experiment/ExperimentInformation";
 import { Execution } from "../../forms/experiment/Execution";
 import { ExperimentPlanning } from "../../forms/experiment/ExperimentPlanning";
 import { PrintForm } from "./printForm";

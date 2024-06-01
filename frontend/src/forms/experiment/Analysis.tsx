@@ -3,70 +3,44 @@ import { ExperimentLayout } from "../../layouts/forms/ExperimentLayout";
 
 export function Analysis() {
 
-    const { handleSubmit, register, prevForm, errors, nextForm } = useFormContext()
+    const { register, prevForm, errors, nextForm } = useFormContext()
 
     return (
         <ExperimentLayout>
             <form onSubmit={nextForm} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
                 <p className="font-bold text-2xl mb-6">ANALYSIS</p>
 
-                <label htmlFor="implicationTreatmentDeveloped">Implication of the Treatment Developed:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.implicationTreatmentDeveloped')} />
-                {errors.implicationTreatmentDeveloped && <span>{errors.implicationTreatmentDeveloped.message}</span>}
-
-                <label htmlFor="mortalityRate">Mortality Rate:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.mortalityRate')} />
-                {errors.mortalityRate && <span>{errors.mortalityRate.message}</span>}
-
-                <p className="text-xl font-semibold pb-2">Threats to Validity</p>
-
-                <label htmlFor="conclusionValidity">Conclusion Validity:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.conclusionValidity')} />
-                {errors.conclusionValidity && <span>{errors.conclusionValidity.message}</span>}
-
-                <label htmlFor="constructoValidity">Constructo Validity:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.constructoValidity')} />
-                {errors.constructoValidity && <span>{errors.constructoValidity.message}</span>}
-
-                <label htmlFor="externalValidity">External Validity:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.externalValidity')} />
-                {errors.externalValidity && <span>{errors.externalValidity.message}</span>}
-
-                <label htmlFor="internalValidity">Internal Validity:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.internalValidity')} />
-                {errors.internalValidity && <span>{errors.internalValidity.message}</span>}
-
-                <p className="text-xl font-semibold pb-2">Data Analysis</p>
-
-                <label htmlFor="effectSize">Effect Size:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.effectSize')} />
-                {errors.effectSize && <span>{errors.effectSize.message}</span>}
-
-                <label htmlFor="statisticalTool">Statistical Tool:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.statisticalTool')} />
-                {errors.statisticalTool && <span>{errors.statisticalTool.message}</span>}
-
-                <label htmlFor="descriptiveStatistics">Descriptive Statistics:</label>
+                <label htmlFor="analysis.descriptiveStatistics">Descriptive Statistics: </label>
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.descriptiveStatistics')} />
-                {errors.descriptiveStatistics && <span>{errors.descriptiveStatistics.message}</span>}
+                {errors.analysis?.descriptiveStatistics && <span>{errors.analysis.descriptiveStatistics.message}</span>}
 
-                <p className="text-xl font-semibold pb-2">Inferential Statistics</p>
+                <label htmlFor="manalysis.dataSetPreparation">Data Set Preparation: </label>
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.dataSetPreparation')} />
+                {errors.analysis?.dataSetPreparation && <span>{errors.analysis.dataSetPreparation.message}</span>}
 
-                <label htmlFor="correlation">Correlation:</label>
-                <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.correlation')} />
-                {errors.correlation && <span>{errors.correlation.message}</span>}
+                <label htmlFor="analysis.hypothesisTesting">Hypothesis Testing: </label>
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.hypothesisTesting')} />
+                {errors.analysis?.hypothesisTesting && <span>{errors.analysis.hypothesisTesting.message}</span>}
 
-                <label htmlFor="hypothesisTest">Hypothesis Test:</label>
-                <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.hypothesisTest')} />
-                {errors.hypothesisTest && <span>{errors.hypothesisTest.message}</span>}
+                <label htmlFor="analysis.hasQualitativeAnalysisOfExperiment">Has Qualitative Analysis of Experiment: </label>
+                <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.hasQualitativeAnalysisOfExperiment')} />
+                {errors.analysis?.hasQualitativeAnalysisOfExperiment && <span>{errors.analysis.hasQualitativeAnalysisOfExperiment.message}</span>}
 
-                <label htmlFor="normalityTest">Normality Test:</label>
-                <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.normalityTest')} />
-                {errors.normalityTest && <span>{errors.normalityTest.message}</span>}
+                <label htmlFor="analysis.whatQualitativeAnalysisPerformed">What Qualitative Analysis was Performed: </label>
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.whatQualitativeAnalysisPerformed')} />
+                {errors.analysis?.whatQualitativeAnalysisPerformed && <span>{errors.analysis.whatQualitativeAnalysisPerformed.message}</span>}
 
-                <label htmlFor="inferentialStatisticsDescription">Describe the utilization of the Inferential Statistics Method:</label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.inferentialStatisticsDescription')} />
-                {errors.inferentialStatisticsDescription && <span>{errors.inferentialStatisticsDescription.message}</span>}
+                <label htmlFor="analysis.experimentAnalysisBasedPValue">The Experiment Analysis was based on P value? </label>
+                <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.experimentAnalysisBasedPValue')} />
+                {errors.analysis?.experimentAnalysisBasedPValue && <span>{errors.analysis.experimentAnalysisBasedPValue.message}</span>}
+
+                <label htmlFor="analysis.howDataHasBeenAnalyzed">Describe how data has been analyzed: </label>
+                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.howDataHasBeenAnalyzed')} />
+                {errors.analysis?.howDataHasBeenAnalyzed && <span>{errors.analysis.howDataHasBeenAnalyzed.message}</span>}
+
+                <label htmlFor="analysis.studyHasPerformedMetaAnalysis">The study has performed Meta Analysis? </label>
+                <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('analysis.studyHasPerformedMetaAnalysis')} />
+                {errors.analysis?.studyHasPerformedMetaAnalysis && <span>{errors.analysis.studyHasPerformedMetaAnalysis.message}</span>}
 
                 <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     NEXT
