@@ -1,11 +1,12 @@
 import { MainLayout } from "../../layouts/screens/MainLayout";
-import { GeneralInformation } from "../../forms/experiment/ExperimentInformation";
-import { Execution } from "../../forms/experiment/Execution";
+import { ExperimentInformation } from "../../forms/experiment/ExperimentInformation";
 import { ExperimentPlanning } from "../../forms/experiment/ExperimentPlanning";
-import { PrintForm } from "./printForm";
-import { useFormContext } from "../../hooks/useFormContext";
+import { ExecutionSelection } from "../../forms/experiment/Execution";
 import { Analysis } from "../../forms/experiment/Analysis";
 import { Documentation } from "../../forms/experiment/Documentation";
+
+import { PrintForm } from "./printForm";
+import { useFormContext } from "../../hooks/useFormContext";
 
 export function RegisterExperimentForm() {
 
@@ -13,9 +14,9 @@ export function RegisterExperimentForm() {
 
     const renderForm = () => {
         switch(currentForm) {
-            case 1: return <GeneralInformation />
+            case 1: return <ExperimentInformation />
             case 2: return <ExperimentPlanning />
-            case 3: return <Execution />
+            case 3: return <ExecutionSelection />
             case 4: return <Analysis />
             case 5: return <Documentation />
             case 6: return <PrintForm />
