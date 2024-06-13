@@ -1,12 +1,11 @@
 import { useFormContext } from "../../hooks/useFormContext";
-import { ExperimentLayout } from "../../layouts/forms/ExperimentLayout";
 
 export function Analysis() {
 
     const { register, prevForm, errors } = useFormContext()
 
     return (
-        <ExperimentLayout>
+        <div className="flex flex-col">
             <p className="font-bold text-2xl mb-6">ANALYSIS</p>
 
             <label htmlFor="analysis-descriptiveStatistics">Descriptive Statistics: </label>
@@ -48,6 +47,6 @@ export function Analysis() {
             <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                 PREV
             </button>
-        </ExperimentLayout>
+        </div>
     )
 }

@@ -1,12 +1,11 @@
 import { useFormContext } from "../../hooks/useFormContext";
-import { ExperimentLayout } from "../../layouts/forms/ExperimentLayout";
 
 export function Documentation() {
 
     const { register, prevForm, errors } = useFormContext()
 
     return (
-        <ExperimentLayout>
+        <div className="flex flex-col"> 
             <p className="font-bold text-2xl mb-6">DOCUMENTATION</p>
 
             <label htmlFor="documentation-useTemplate">Use Template? </label>
@@ -58,6 +57,6 @@ export function Documentation() {
             <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                 SUBMIT
             </button>
-        </ExperimentLayout>
+        </div>
     )
 }

@@ -17,7 +17,7 @@ interface IExperimentFormContext {
 export const ExperimentFormContext = createContext({} as IExperimentFormContext)
 
 export function FormProvider({ children }: any) {
-    const totalForms = 6
+    const totalForms = 5
 
     const [currentForm, setCurrentForm] = useState<number>(1)
 
@@ -41,22 +41,22 @@ export function FormProvider({ children }: any) {
     const handleSubmit = (hookFormSubmit((data) => {
         nextForm()
         console.log(data)
-}))
+    }))
 
-const verifyHandleSubmit = async (e: React.BaseSyntheticEvent<object, any, any> | undefined) => {
-    if (e) {
-        e.preventDefault()
-    }
-    if (currentForm === totalForms-1) {
-        try {
-            await handleSubmit()
-        } catch (error) {
-            console.error("Erro!", error)
+    const verifyHandleSubmit = async (e: React.BaseSyntheticEvent<object, any, any> | undefined) => {
+        if (e) {
+            e.preventDefault()
         }
-    } else {
-        nextForm()
+        if (currentForm === totalForms) {
+            try {
+                await handleSubmit()
+            } catch (error) {
+                console.error("Erro!", error)
+            }
+        } else {
+            nextForm()
+        }
     }
-}
     
     return (
         <ExperimentFormContext.Provider value={{ 

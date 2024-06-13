@@ -1,12 +1,11 @@
 import { useFormContext } from "../../hooks/useFormContext";
-import { ExperimentLayout } from "../../layouts/forms/ExperimentLayout";
 
 export function ExecutionSelection() {
 
     const { register, prevForm, errors } = useFormContext()
 
     return (
-        <ExperimentLayout>
+        <div className="flex flex-col">
             <p className="font-bold text-2xl mb-6">EXECUTION</p>
 
             <label htmlFor="executionSelection-preparation">Preparation: </label>
@@ -32,6 +31,6 @@ export function ExecutionSelection() {
             <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                 NEXT
             </button>
-        </ExperimentLayout>
+        </div>
     )
 }
