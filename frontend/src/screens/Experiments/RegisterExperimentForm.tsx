@@ -8,6 +8,7 @@ import { Documentation } from "../../forms/experiment/Documentation";
 import { PrintForm } from "./printForm";
 import { useFormContext } from "../../hooks/useFormContext";
 
+
 export function RegisterExperimentForm() {
 
     const { currentForm } = useFormContext()
@@ -25,9 +26,9 @@ export function RegisterExperimentForm() {
 
     return (
         <MainLayout>
-                <div>
-                    {renderForm()}
-                </div>
+            <div>
+                {renderForm()}
+            </div>
         </MainLayout>
     )
 }
