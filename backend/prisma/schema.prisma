@@ -15,6 +15,23 @@ datasource db {
 
 model ExperimentData {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  authorship String
+  publicationYear Int
+  publicationType String
+  publicationVenue String
+  pagesNumber Int
+  documentation Json
+  experimentPlanning Json
+  discussion Json
+  executionSelection Json
+  evaluation Json
+  conslusionsFutureWork Json
+  references Json
+  appendices Json
+  acknowledgments Json
+  package Json
+  analysis Json
 
   @@map("experimentData")
 }
