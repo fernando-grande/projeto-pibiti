@@ -26,7 +26,7 @@ export function ExecutionSelection() {
                 <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('executionSelection.howManyPilotProjectCarriedOut')} />
                 {errors.executionSelection?.howManyPilotProjectCarriedOut && <span>{errors.executionSelection.howManyPilotProjectCarriedOut.message}</span>}
 
-                <button onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                     PREV
                 </button>
 
