@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 export const analysisSchema = z.object({
-    descriptiveStatistics: z.string().min(1),
-    dataSetPreparation: z.string().min(1),
-    hypothesisTesting: z.string().min(1),
-    hasQualitativeAnalysisOfExperiment: z.boolean(),
-    whatQualitativeAnalysisPerformed: z.string().min(1),
-    experimentAnalysisBasedPValue: z.boolean(),
+    descriptiveStatistics: z.string(),
+    dataSetPreparation: z.string(),
+    hypothesisTesting: z.string(),
+    hasQualitativeAnalysisOfExperiment: z.boolean().optional().default(false),
+    whatQualitativeAnalysisPerformed: z.string(),
+    experimentAnalysisBasedPValue: z.boolean().optional().default(false),
     howDataHasBeenAnalyzed: z.string(),
-    studyHasPerformedMetaAnalysis: z.boolean()
+    studyHasPerformedMetaAnalysis: z.boolean().optional().default(false)
 })

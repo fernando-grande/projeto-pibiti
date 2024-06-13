@@ -10,46 +10,46 @@ export function Documentation() {
             <form onSubmit={handleSubmit} className="flex flex-col m-12 h-auto bg-white rounded-md px-6 py-4 border-[1px]">
                 <p className="font-bold text-2xl mb-6">DOCUMENTATION</p>
 
-                <label htmlFor="documentation.useTemplate">Use Template? </label>
-                <input type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.useTemplate')} />
+                <label htmlFor="documentation-useTemplate">Use Template? </label>
+                <input id="documentation-useTemplate" type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.useTemplate')} />
                 {errors.documentation?.useTemplate && <span>{errors.documentation.useTemplate.message}</span>}
 
-                <label htmlFor="documentation.template">Template Used: </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.template')} />
+                <label htmlFor="documentation-template">Template Used: </label>
+                <input id="documentation-template" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.template')} />
                 {errors.documentation?.template && <span>{errors.documentation.template.message}</span>}
 
-                <label htmlFor="result">Observations about the template used: </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.observationsAboutTemplateUsed')} />
+                <label htmlFor="documentation-observationsAboutTemplateUsed">Observations about the template used: </label>
+                <input id="documentation-observationsAboutTemplateUsed" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.observationsAboutTemplateUsed')} />
                 {errors.documentation?.observationsAboutTemplateUsed && <span>{errors.documentation.observationsAboutTemplateUsed.message}</span>}
 
                 <p className="text-xl font-semibold pb-2">ABSTRACT</p>
 
-                <label htmlFor="documentation.template">Objective:  </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.objective')} />
+                <label htmlFor="documentation-abstract-objective">Objective:  </label>
+                <input id="documentation-abstract-objective" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.objective')} />
                 {errors.documentation?.abstract?.objective && <span>{errors.documentation.abstract.objective.message}</span>}
 
-                <label htmlFor="documentation.template">Abstract backgound: </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.template')} />
+                <label htmlFor="documentation-abstract-abstractBackground">Abstract backgound: </label>
+                <input id="documentation-abstract-abstractBackground" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.abstractBackground')} />
                 {errors.documentation?.template && <span>{errors.documentation.template.message}</span>}
 
-                <label htmlFor="documentation.template">Methods: </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.template')} />
+                <label htmlFor="documentation-abstract-methods">Methods: </label>
+                <input id="documentation-abstract-methods" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.methods')} />
                 {errors.documentation?.template && <span>{errors.documentation.template.message}</span>}
 
-                <label htmlFor="documentation.template">Results: </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.template')} />
+                <label htmlFor="documentation-abstract-results">Results: </label>
+                <input id="documentation.abstract.results" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.results')} />
                 {errors.documentation?.template && <span>{errors.documentation.template.message}</span>}
 
-                <label htmlFor="documentation.template">Limitations: </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.template')} />
+                <label htmlFor="documentation-abstract-limitations">Limitations: </label>
+                <input id="documentation-abstract-limitations" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.limitations')} />
                 {errors.documentation?.template && <span>{errors.documentation.template.message}</span>}
 
-                <label htmlFor="documentation.template">Conclusions: </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.template')} />
+                <label htmlFor="documentation-abstract-conclusions">Conclusions: </label>
+                <input id="documentation-abstract-conclusions" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.conclusions')} />
                 {errors.documentation?.template && <span>{errors.documentation.template.message}</span>}
 
-                <label htmlFor="documentation.template">Keywords: </label>
-                <input className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.template')} />
+                <label htmlFor="documentation-abstract-keywords">Keywords: </label>
+                <input id="documentation-abstract-keywords" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.keywords')} />
                 {errors.documentation?.template && <span>{errors.documentation.template.message}</span>}
 
                 <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">

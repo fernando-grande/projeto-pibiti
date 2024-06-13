@@ -37,8 +37,8 @@ export function FormProvider({ children }: any) {
     }
 
     const handleSubmit = (hookFormSubmit((data) => {
-        nextForm()
         console.log(data)
+        nextForm()
     }))
     
     return (
