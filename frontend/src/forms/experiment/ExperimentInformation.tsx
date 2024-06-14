@@ -2,7 +2,7 @@ import { useFormContext } from "../../hooks/useFormContext";
 
 export function ExperimentInformation() {
 
-    const { register, errors } = useFormContext()
+    const { register, errors, getValues } = useFormContext()
 
     return (
         <div className="flex flex-col">
@@ -17,7 +17,7 @@ export function ExperimentInformation() {
             {errors.authorship && <span>{errors.authorship.message}</span>}
 
             <label htmlFor="publicationYear">Publication Year: </label>
-            <input id="publicationYear" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('publicationYear')}/>
+            <input type="number" id="publicationYear" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('publicationYear', {setValueAs: (value) => Number(value)})}/>
             {errors.publicationYear && <span>{errors.publicationYear.message}</span>}
 
             <label htmlFor="publicationType">Publication Type: </label>
@@ -29,7 +29,7 @@ export function ExperimentInformation() {
             {errors.publicationVenue && <span>{errors.publicationVenue.message}</span>}
 
             <label htmlFor="pagesNumber">Pages Number: </label>
-            <input id="pagesNumber" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('pagesNumber')}/>
+            <input type="number" id="pagesNumber" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('pagesNumber', {setValueAs: (value) => Number(value)})}/>
             {errors.pagesNumber && <span>{errors.pagesNumber.message}</span>}
 
             <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">

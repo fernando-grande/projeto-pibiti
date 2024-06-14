@@ -15,10 +15,10 @@ import { analysisSchema } from "./analysis"
 export const experimentSchema = z.object({
     title: z.string().optional(),
     authorship: z.string().optional(),
-    publicationYear: z.number().int().default(2015).optional(),
+    publicationYear: z.number().int(),
     publicationType: z.string().optional(),
     publicationVenue: z.string().optional(),
-    pagesNumber: z.number().int().default(10).optional(),
+    pagesNumber: z.number().int(),
     documentation: documentationSchema,
     experimentPlanning: experimentPlanningSchema,
     discussion: discussionSchema,

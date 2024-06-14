@@ -19,7 +19,7 @@ interface IExperimentFormContext {
 export const ExperimentFormContext = createContext({} as IExperimentFormContext)
 
 export function FormProvider({ children }: any) {
-    const totalForms = 13
+    const totalForms = 12
 
     const [currentForm, setCurrentForm] = useState<number>(1)
 
@@ -40,8 +40,8 @@ export function FormProvider({ children }: any) {
         setCurrentForm((currentForm) => currentForm - 1)
     }
 
-    const handleSubmit = (hookFormSubmit((data) => {
-        nextForm()
+    const handleSubmit = (hookFormSubmit(async (data) => {
+        await sendExperimentDataBackend(data)
         console.log(data)
     }))
 
@@ -52,8 +52,7 @@ export function FormProvider({ children }: any) {
         if (currentForm === totalForms) {
             try {
                 await handleSubmit()
-                const data = getValues()
-                await sendExperimentDataBackend(data)
+
             } catch (error) {
                 console.error("Erro!", error)
             }
@@ -62,9 +61,16 @@ export function FormProvider({ children }: any) {
         }
     }
 
+    console.log("Current Form:", currentForm); // Verifique o valor de currentForm no console
+    console.log("Errors:", errors); // Verifique os erros no console
+
     const sendExperimentDataBackend = async (data: ExperimentTypeSchema) => {
         try {
-            const response = await axios.post('http://localhost:3000/experiments', data)
+            const response = await axios.post('http://localhost:3000/experiments', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
 
             console.log("Data sent to backend!", response.data)
 
@@ -79,7 +85,7 @@ export function FormProvider({ children }: any) {
             nextForm,
             prevForm,
             register,
-            handleSubmit,
+            handleSubmit: verifyHandleSubmit,
             getValues,
             errors
         }}>

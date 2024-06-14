@@ -29,7 +29,7 @@ export function ExperimentPlanning() {
             {errors.experimentPlanning?.hypotheses && <span>{errors.experimentPlanning.hypotheses.message}</span>}
 
             <label htmlFor="experimentPlanning-parameters">Parameters: </label>
-            <input id="experimentPlanning-parameters" className="w-96 bexperimentPlanning.parametersorder-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.parameters')} />
+            <input id="experimentPlanning-parameters" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.parameters')} />
             {errors.experimentPlanning?.parameters && <span>{errors.experimentPlanning.parameters.message}</span>}
 
             <label htmlFor="experimentPlanning-experimentDesign">Experiment Design: </label>
@@ -55,7 +55,7 @@ export function ExperimentPlanning() {
             <p className="text-xl font-semibold pb-2">Experiment Type </p>
 
             <label htmlFor="experimentPlanning-typeExperiment-original">Original </label>
-            <input id="experimentPlanning-typeExperiment.original" type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.typeExperiment.original')} />
+            <input id="experimentPlanning-typeExperiment-original" type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.typeExperiment.original')} />
             {errors.experimentPlanning?.typeExperiment?.original && <span>{errors.experimentPlanning.typeExperiment.original.message}</span>}
 
             <label htmlFor="experimentPlanning-typeExperiment-replicated">Replicated </label>
@@ -147,7 +147,7 @@ export function ExperimentPlanning() {
             {errors.experimentPlanning?.typeContextSelection?.realProblems && <span>{errors.experimentPlanning.typeContextSelection.realProblems.message}</span>}
 
             <label htmlFor="experimentPlanning-typeContextSelection-specific">Specific </label>
-            <input id="experimentPlanning-typeContextSelection-realProblems" type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.typeContextSelection.specific')} />
+            <input id="experimentPlanning-typeContextSelection-specific" type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.typeContextSelection.specific')} />
             {errors.experimentPlanning?.typeContextSelection?.specific && <span>{errors.experimentPlanning.typeContextSelection.specific.message}</span>}
 
             <label htmlFor="experimentPlanning-typeContextSelection-general">General </label>

@@ -21,17 +21,171 @@ model ExperimentData {
   publicationType String
   publicationVenue String
   pagesNumber Int
-  documentation Json
-  experimentPlanning Json
-  discussion Json
-  executionSelection Json
-  evaluation Json
-  conslusionsFutureWork Json
-  references Json
-  appendices Json
-  acknowledgments Json
-  package Json
-  analysis Json
+  documentation Documentation
+  experimentPlanning ExperimentPlanning
+  discussion Discussion
+  executionSelection ExecutionSelection
+  evaluation Evaluation
+  conslusionsFutureWork ConclusionsFutureWork
+  references References
+  appendices Appendices
+  acknowledgements Acknowledgements
+  package Package
+  analysis Analysis
 
   @@map("experimentData")
+}
+
+// Experiment Planning
+
+type ExperimentPlanning {
+  goals String
+  experimentalUnits String
+  experimentalMaterial String
+  tasks String
+  hypotheses String
+  parameters String
+  experimentDesign String
+  procedure String
+  analysisProcedure String
+  isAQuasiExperiment Boolean
+  isExplicitsAQuasiExperimentInStudy Boolean
+  typeExperiment TypeExperiment
+  typeContextExperiment TypeContextExperiment
+  typeDesignExperiment TypeDesignExperiment
+  typeSelectionParticipantsObjects TypeSelectionParticipantsObjects
+  typeContextSelection TypeContextSelection
+}
+
+type TypeExperiment {
+  original Boolean
+  replicated Boolean
+  repeated Boolean
+  reproduced Boolean
+}
+
+type TypeContextExperiment {
+  inVivo Boolean
+  inVitro Boolean
+}
+
+type TypeDesignExperiment {
+  oneFactorWithTwoTreatments Boolean
+  oneFactorWithMoreThanTwoTreatments Boolean
+  twoFactorsWithTwoTreatments Boolean
+  moreThanTwoFactorsEachTwoTreatments Boolean
+}
+
+type TypeSelectionParticipantsObjects {
+  simpleRandomSampling Boolean
+  systematicSampling Boolean
+  stratifiedRandomSampling Boolean
+  convenienceSampling Boolean
+  quotaSampling Boolean
+} 
+
+type TypeContextSelection {
+   offline Boolean
+   online Boolean
+   student Boolean
+   professional Boolean
+   toy Boolean
+   realProblems Boolean
+   specific Boolean
+   general Boolean
+}
+
+// ExecutionSelection
+
+type ExecutionSelection {
+  preparation String
+  deviations String
+  pilotProjectCarriedOut Boolean
+  howManyPilotProjectCarriedOut Int
+}
+
+// Analysis
+
+type Analysis {
+  descriptiveStatistics String
+  dataSetPreparation String
+  hypothesisTesting String
+  hasQualitativeAnalysisOfExperiment Boolean
+  whatQualitativeAnalysisPerformed String
+  experimentAnalysisBasedPValue Boolean
+  howDataHasBeenAnalyzed String
+  studyHasPerformedMetaAnalysis Boolean
+}
+
+// Discussion
+
+type Discussion {
+  evaluationOfResultsAndImplications String
+  threatsValidity String
+  isFollowThreatsByWohlin Boolean
+  inferences String
+  lessonsLearned String
+}
+
+// Evaluation
+
+type Evaluation {
+  theAuthorsConcernedEvaluatingTheQuality String
+}
+
+// Documentation
+
+type Documentation {
+  useTemplate Boolean
+  template String
+  observationsAboutTemplateUsed String
+  abstract Abstract
+  introduction Introduction
+  relatedWork RelatedWork
+}
+
+type Abstract {
+  objective String
+  abstractBackground String
+  methods String
+  results String
+  limitations String
+  conclusions String
+  keywords String
+}
+
+type Introduction {
+  problemStatement String
+  researchObjectives String
+  context String
+}
+
+type RelatedWork {
+  technologyUnderInvestigation String
+  alternativeTechnologies String
+  relatedStudies String
+  relevancePractice String
+}
+
+type Acknowledgements {
+  text String
+}
+
+type Appendices {
+  appendices String
+}
+
+type ConclusionsFutureWork {
+  summary String
+  impact String
+  futureWork String
+}
+
+type References {
+  references String
+}
+
+type Package {
+  isExperimentalPackageInformed Boolean
+  url String
 }

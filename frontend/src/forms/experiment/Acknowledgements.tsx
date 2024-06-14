@@ -7,7 +7,7 @@ export function Acknowledgements() {
         <div className="flex flex-col">
             <p className="font-bold text-2xl mb-6">ACKNOWLEDGEMENTS</p>
 
-            <label htmlFor="acknowledgments-text">Acknowledements: </label>
+            <label htmlFor="acknowledgments-text">Text: </label>
             <input id="acknowledgments-text" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('acknowledgments.text')} />
             {errors.acknowledgments?.text && <span>{errors.acknowledgments.text.message}</span>}
 

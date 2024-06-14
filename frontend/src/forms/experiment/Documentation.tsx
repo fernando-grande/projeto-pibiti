@@ -35,7 +35,7 @@ export function Documentation() {
             {errors.documentation?.abstract?.methods && <span>{errors.documentation.abstract.methods.message}</span>}
 
             <label htmlFor="documentation-abstract-results">Results: </label>
-            <input id="documentation.abstract.results" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.results')} />
+            <input id="documentation-abstract-results" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.results')} />
             {errors.documentation?.abstract?.results && <span>{errors.documentation.abstract.results.message}</span>}
 
             <label htmlFor="documentation-abstract-limitations">Limitations: </label>

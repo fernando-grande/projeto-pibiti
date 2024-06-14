@@ -21,13 +21,13 @@ export function ExecutionSelection() {
             {errors.executionSelection?.pilotProjectCarriedOut && <span>{errors.executionSelection.pilotProjectCarriedOut.message}</span>}
 
             <label htmlFor="executionSelection-howManyPilotProjectCarriedOut">How many Pilot Projects were carried out? </label>
-            <input id="executionSelection-howManyPilotProjectCarriedOut" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('executionSelection.howManyPilotProjectCarriedOut')} />
+            <input id="executionSelection-howManyPilotProjectCarriedOut" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('executionSelection.howManyPilotProjectCarriedOut', {setValueAs: (value) => Number(value)})} />
             {errors.executionSelection?.howManyPilotProjectCarriedOut && <span>{errors.executionSelection.howManyPilotProjectCarriedOut.message}</span>}
 
             <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                 NEXT
             </button>
-            
+
             <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                 PREV
             </button>
