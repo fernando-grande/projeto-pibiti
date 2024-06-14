@@ -32,8 +32,6 @@ model ExperimentData {
   acknowledgements Acknowledgements
   package Package
   analysis Analysis
-
-  @@map("experimentData")
 }
 
 // Experiment Planning
