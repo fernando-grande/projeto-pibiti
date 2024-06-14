@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model ExperimentData {
+model experimentFormData {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   authorship String
@@ -26,7 +26,7 @@ model ExperimentData {
   discussion Discussion
   executionSelection ExecutionSelection
   evaluation Evaluation
-  conslusionsFutureWork ConclusionsFutureWork
+  conclusionsFutureWork ConclusionsFutureWork
   references References
   appendices Appendices
   acknowledgements Acknowledgements
@@ -128,7 +128,7 @@ type Discussion {
 // Evaluation
 
 type Evaluation {
-  theAuthorsConcernedEvaluatingTheQuality String
+  theAuthorsConcernedEvaluatingTheQuality Boolean
 }
 
 // Documentation

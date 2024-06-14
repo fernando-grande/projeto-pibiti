@@ -8,7 +8,7 @@ import { evaluationSchema } from "./evaluation"
 import { conclusionsFutureWorkSchema } from "./conclusionsFutureWork"
 import { referencesSchema } from "./references"
 import { appendicesSchema } from "./appendices"
-import { acknowledgmentsSchema } from "./acknowledgements"
+import { acknowledgementsSchema } from "./acknowledgements"
 import { packageSchema } from "./package"
 import { analysisSchema } from "./analysis"
 
@@ -27,7 +27,7 @@ export const experimentSchema = z.object({
     conclusionsFutureWork: conclusionsFutureWorkSchema,
     references: referencesSchema,
     appendices: appendicesSchema,
-    acknowledgments: acknowledgmentsSchema,
+    acknowledgements: acknowledgementsSchema,
     package: packageSchema,
     analysis: analysisSchema
 })

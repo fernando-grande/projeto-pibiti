@@ -9,12 +9,7 @@ const port = 3000
 
 const prisma = new PrismaClient()
 
-const corsOptions = {
-    origin: 'http://localhost:5173', // URL do seu frontend
-    methods: ['POST'], // Métodos permitidos
-    allowedHeaders: ['Content-Type'], // Headers permitidos
-};
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use(bodyParser.json())
 
@@ -24,13 +19,12 @@ app.post('/experiments', async (req: any, res: any) => {
 
     try {
         const validExperimentData = experimentSchema.parse(experimentFormData)
-        console.log(validExperimentData)
 
-        const insertExperimentData = await prisma.ExperimentData.create({
+        const insertExperimentData = await prisma.experimentFormData.create({
             data: validExperimentData,
         })
 
-        console.log(insertExperimentData)
+        console.log("Data was inserted!")
         return res.status(201).json(insertExperimentData)
     } catch (error: any) {
         console.error("Error in data validation!", error.errors)

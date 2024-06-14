@@ -43,6 +43,7 @@ export function FormProvider({ children }: any) {
     const handleSubmit = (hookFormSubmit(async (data) => {
         await sendExperimentDataBackend(data)
         console.log(data)
+        nextForm()
     }))
 
     const verifyHandleSubmit = async (e: React.BaseSyntheticEvent<object, any, any> | undefined) => {
@@ -66,11 +67,7 @@ export function FormProvider({ children }: any) {
 
     const sendExperimentDataBackend = async (data: ExperimentTypeSchema) => {
         try {
-            const response = await axios.post('http://localhost:3000/experiments', data, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
+            const response = await axios.post('http://localhost:3000/experiments', data)
 
             console.log("Data sent to backend!", response.data)
 

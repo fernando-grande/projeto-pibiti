@@ -1,5 +1,5 @@
 import { z } from "zod";
 
-export const acknowledgmentsSchema = z.object({
+export const acknowledgementsSchema = z.object({
     text: z.string().optional()
 })
