@@ -3,6 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldErrors, UseFormGetValues, UseFormRegister, useForm } from "react-hook-form";
 import { experimentSchema, ExperimentTypeSchema } from "../libs/zod/experiment/experiment";
 
+import axios from "axios";
+
 
 interface IExperimentFormContext {
     nextForm: () => void,
@@ -50,11 +52,24 @@ export function FormProvider({ children }: any) {
         if (currentForm === totalForms) {
             try {
                 await handleSubmit()
+                const data = getValues()
+                await sendExperimentDataBackend(data)
             } catch (error) {
                 console.error("Erro!", error)
             }
         } else {
             nextForm()
+        }
+    }
+
+    const sendExperimentDataBackend = async (data: ExperimentTypeSchema) => {
+        try {
+            const response = await axios.post('http://localhost:3000/experiments', data)
+
+            console.log("Data sent to backend!", response.data)
+
+        } catch(error) {
+            console.error('Error: ', error)
         }
     }
     

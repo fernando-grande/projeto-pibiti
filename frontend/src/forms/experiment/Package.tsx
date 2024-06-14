@@ -1,7 +1,7 @@
 import { useFormContext } from "../../hooks/useFormContext"
 
 export function Package() {
-    const { register, prevForm, nextForm, errors } = useFormContext()
+    const { register, prevForm, errors } = useFormContext()
 
     return (
         <div className="flex flex-col">
