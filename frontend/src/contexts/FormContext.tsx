@@ -17,7 +17,7 @@ interface IExperimentFormContext {
 export const ExperimentFormContext = createContext({} as IExperimentFormContext)
 
 export function FormProvider({ children }: any) {
-    const totalForms = 5
+    const totalForms = 13
 
     const [currentForm, setCurrentForm] = useState<number>(1)
 

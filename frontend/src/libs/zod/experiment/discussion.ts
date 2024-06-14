@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 export const discussionSchema = z.object({
-    evaluationOfResultsAndImplications: z.string(),
-    threatsValidity: z.string(),
+    evaluationOfResultsAndImplications: z.string().optional(),
+    threatsValidity: z.string().optional(),
     isFollowThreatsByWohlin: z.boolean().optional().default(false),
-    inferences: z.string(),
-    lessonsLearned: z.string()
+    inferences: z.string().optional(),
+    lessonsLearned: z.string().optional()
 })

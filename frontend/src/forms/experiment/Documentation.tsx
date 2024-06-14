@@ -50,12 +50,12 @@ export function Documentation() {
             <input id="documentation-abstract-keywords" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('documentation.abstract.keywords')} />
             {errors.documentation?.template && <span>{errors.documentation.template.message}</span>}
 
-            <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
-                PREV
+            <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                NEXT
             </button>
 
-            <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
-                SUBMIT
+            <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                PREV
             </button>
         </div>
     )

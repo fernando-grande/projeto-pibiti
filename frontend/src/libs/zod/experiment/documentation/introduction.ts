@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const introductionSchema = z.object({
-    problemStatement: z.string(),
-    researchObjectives: z.string(),
-    context: z.string()
+    problemStatement: z.string().optional(),
+    researchObjectives: z.string().optional(),
+    context: z.string().optional()
 })

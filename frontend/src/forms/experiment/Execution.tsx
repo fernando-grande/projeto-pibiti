@@ -24,12 +24,12 @@ export function ExecutionSelection() {
             <input id="executionSelection-howManyPilotProjectCarriedOut" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('executionSelection.howManyPilotProjectCarriedOut')} />
             {errors.executionSelection?.howManyPilotProjectCarriedOut && <span>{errors.executionSelection.howManyPilotProjectCarriedOut.message}</span>}
 
-            <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
-                PREV
-            </button>
-
             <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                 NEXT
+            </button>
+            
+            <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                PREV
             </button>
         </div>
     )

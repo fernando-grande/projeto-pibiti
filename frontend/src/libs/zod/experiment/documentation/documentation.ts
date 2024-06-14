@@ -6,8 +6,8 @@ import { abstractSchema } from "./abstract"
 
 export const documentationSchema = z.object({
     useTemplate: z.boolean().optional().default(false),
-    template: z.string(),
-    observationsAboutTemplateUsed: z.string(),
+    template: z.string().optional(),
+    observationsAboutTemplateUsed: z.string().optional(),
     introduction: introductionSchema,
     relatedWork: relatedWorkSchema,
     abstract: abstractSchema

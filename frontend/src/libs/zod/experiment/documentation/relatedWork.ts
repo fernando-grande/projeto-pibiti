@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const relatedWorkSchema = z.object({
-    technologyUnderInvestigation: z.string(),
-    alternativeTechnologies: z.string(),
-    relatedStudies: z.string(),
-    relevancePractice: z.string()
+    technologyUnderInvestigation: z.string().optional(),
+    alternativeTechnologies: z.string().optional(),
+    relatedStudies: z.string().optional(),
+    relevancePractice: z.string().optional()
 })

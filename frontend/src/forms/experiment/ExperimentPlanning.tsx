@@ -154,12 +154,12 @@ export function ExperimentPlanning() {
             <input id="experimentPlanning-typeContextSelection-general" type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.typeContextSelection.general')} />
             {errors.experimentPlanning?.typeContextSelection?.general && <span>{errors.experimentPlanning.typeContextSelection.general.message}</span>}
 
-            <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
-                PREV
-            </button>
-
             <button type="submit" className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
                 NEXT
+            </button>
+
+            <button type="button" onClick={prevForm} className="font-bold text-white mb-6 border-[1px] p-2 rounded-md bg-sky-700 w-24">
+                PREV
             </button>
         </div>
     )
