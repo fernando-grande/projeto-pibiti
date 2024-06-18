@@ -2,7 +2,7 @@ import { useFormContext } from "../../hooks/useFormContext";
 
 export function ExperimentInformation() {
 
-    const { register, errors, getValues } = useFormContext()
+    const { register, errors } = useFormContext()
 
     return (
         <div className="flex flex-col">

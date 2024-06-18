@@ -1,10 +1,10 @@
 import { z } from "zod"
 
-import { typeExperimentSchema } from "./typeExperiment"
-import { typeContextExperimentSchema } from "./typeContextExperiment"
-import { typeDesignExperimentSchema } from "./typeDesignExperiment"
-import { typeSelectionParticipantsObjectsSchema } from "./typeSelectionParticipantsObjects"
-import { typeContextSelectionSchema } from "./typeContextSelection"
+import { typeExperimentSchema } from "./typeExperiment/typeExperiment"
+import { typeContextExperimentSchema } from "./typeContextExperiment/typeContextExperiment"
+import { typeDesignExperimentSchema } from "./typeDesignExperiment/typeDesignExperiment"
+import { typeSelectionParticipantsObjectsSchema } from "./typeSelectionParticipantsObjects/typeSelectionParticipantsObjects"
+import { typeContextSelectionSchema } from "./typeContextSelection/typeContextSelection"
 
 export const experimentPlanningSchema = z.object({
     goals: z.string().optional(),

@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldErrors, UseFormGetValues, UseFormRegister, useForm } from "react-hook-form";
+import { FieldErrors, UseFormGetValues, UseFormRegister, UseFormTrigger, useForm } from "react-hook-form";
 import { experimentSchema, ExperimentTypeSchema } from "../libs/zod/experiment/experiment";
 
 import axios from "axios";
@@ -8,8 +8,10 @@ import axios from "axios";
 
 interface IExperimentFormContext {
     nextForm: () => void,
+    handleNextForm: () => void,
     prevForm: () => void,
     currentForm: number,
+    trigger: UseFormTrigger<ExperimentTypeSchema>
     register: UseFormRegister<ExperimentTypeSchema>,
     getValues: UseFormGetValues<ExperimentTypeSchema>,
     handleSubmit: (e?: React.BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>,
@@ -19,7 +21,22 @@ interface IExperimentFormContext {
 export const ExperimentFormContext = createContext({} as IExperimentFormContext)
 
 export function FormProvider({ children }: any) {
-    const totalForms = 12
+    const formNames = [
+        "experiment",
+        "documentation",
+        "experimentPlanning",
+        "discussion",
+        "executionSelection",
+        "evaluation",
+        "conclusionsFutureWork",
+        "references",
+        "appendices",
+        "acknowledgements",
+        "package",
+        "analysis"
+    ]
+
+    const totalForms = formNames.length
 
     const [currentForm, setCurrentForm] = useState<number>(1)
 
@@ -27,13 +44,21 @@ export function FormProvider({ children }: any) {
         register,
         handleSubmit: hookFormSubmit,
         getValues,
+        trigger,
         formState: { errors }
     } = useForm<ExperimentTypeSchema>({
         resolver: zodResolver(experimentSchema)
     })
-
+    
     const nextForm = () => {
         setCurrentForm((currentForm) => currentForm + 1)
+    }
+    
+    const handleNextForm = async () => {
+        const validForm = await trigger()
+        if (validForm) {
+            nextForm()
+        }
     }
 
     const prevForm = () => {
@@ -58,12 +83,9 @@ export function FormProvider({ children }: any) {
                 console.error("Erro!", error)
             }
         } else {
-            nextForm()
+            handleNextForm()
         }
     }
-
-    console.log("Current Form:", currentForm); // Verifique o valor de currentForm no console
-    console.log("Errors:", errors); // Verifique os erros no console
 
     const sendExperimentDataBackend = async (data: ExperimentTypeSchema) => {
         try {
@@ -80,9 +102,11 @@ export function FormProvider({ children }: any) {
         <ExperimentFormContext.Provider value={{ 
             currentForm,
             nextForm,
+            handleNextForm,
             prevForm,
             register,
             handleSubmit: verifyHandleSubmit,
+            trigger,
             getValues,
             errors
         }}>
