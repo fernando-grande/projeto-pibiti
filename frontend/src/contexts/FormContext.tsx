@@ -83,7 +83,7 @@ export function FormProvider({ children }: any) {
                 console.error("Erro!", error)
             }
         } else {
-            handleNextForm()
+            nextForm()
         }
     }
 

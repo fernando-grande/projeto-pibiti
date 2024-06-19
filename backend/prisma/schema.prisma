@@ -36,7 +36,7 @@ model experimentFormData {
 
 // Experiment Planning
 
-type ExperimentPlanning {
+type ExperimentPlanning { 
   goals String
   experimentalUnits String
   experimentalMaterial String
