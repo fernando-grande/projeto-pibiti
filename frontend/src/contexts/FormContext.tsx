@@ -8,7 +8,6 @@ import axios from "axios";
 
 interface IExperimentFormContext {
     nextForm: () => void,
-    handleNextForm: () => void,
     prevForm: () => void,
     currentForm: number,
     trigger: UseFormTrigger<ExperimentTypeSchema>
@@ -21,22 +20,22 @@ interface IExperimentFormContext {
 export const ExperimentFormContext = createContext({} as IExperimentFormContext)
 
 export function FormProvider({ children }: any) {
-    const formNames = [
-        "experiment",
-        "documentation",
-        "experimentPlanning",
-        "discussion",
-        "executionSelection",
-        "evaluation",
-        "conclusionsFutureWork",
-        "references",
-        "appendices",
-        "acknowledgements",
-        "package",
-        "analysis"
-    ]
+    const formFields: { [key: number]: (keyof ExperimentTypeSchema)[] } = {
+        1: ['title', 'authorship', 'publicationYear', 'publicationType', 'publicationVenue', 'pagesNumber'],
+        2: ['documentation'],
+        3: ['experimentPlanning'],
+        4: ['discussion'],
+        5: ['executionSelection'],
+        6: ['evaluation'],
+        7: ['conclusionsFutureWork'],
+        8: ['references'],
+        9: ['appendices'],
+        10: ['acknowledgements'],
+        11: ['package'],
+        12: ['analysis']
+    }
 
-    const totalForms = formNames.length
+    const totalForms = 12
 
     const [currentForm, setCurrentForm] = useState<number>(1)
 
@@ -53,13 +52,6 @@ export function FormProvider({ children }: any) {
     const nextForm = () => {
         setCurrentForm((currentForm) => currentForm + 1)
     }
-    
-    const handleNextForm = async () => {
-        const validForm = await trigger()
-        if (validForm) {
-            nextForm()
-        }
-    }
 
     const prevForm = () => {
         setCurrentForm((currentForm) => currentForm - 1)
@@ -75,15 +67,21 @@ export function FormProvider({ children }: any) {
         if (e) {
             e.preventDefault()
         }
-        if (currentForm === totalForms) {
-            try {
-                await handleSubmit()
 
-            } catch (error) {
-                console.error("Erro!", error)
+        const currentFormField = formFields[currentForm]
+        const validForm = await trigger(currentFormField)
+
+        if(validForm) {
+            if (currentForm === totalForms) {
+                try {
+                    await handleSubmit()
+
+                } catch (error) {
+                    console.error("Erro ao submeter o formulário!", error)
+                }
+            } else {
+                nextForm()
             }
-        } else {
-            nextForm()
         }
     }
 
@@ -102,7 +100,6 @@ export function FormProvider({ children }: any) {
         <ExperimentFormContext.Provider value={{ 
             currentForm,
             nextForm,
-            handleNextForm,
             prevForm,
             register,
             handleSubmit: verifyHandleSubmit,
