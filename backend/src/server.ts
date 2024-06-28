@@ -35,6 +35,18 @@ app.post('/experiments', async (req: any, res: any) => {
 
 })
 
+app.get('/experimentsData', async (req: any, res: any) => {
+    try {
+        const response = await prisma.experimentFormData.findMany()
+        return res.json(response)
+        console.log('Sucess!!')
+
+    } catch(error: any) {
+        console.error("Error in requisition", error.errors)
+        return res.status(500).json({ error: 'Error in get requisition!' })
+    }
+})
+
 const server = app.listen(port, () => {
     console.log('App running!')
 })

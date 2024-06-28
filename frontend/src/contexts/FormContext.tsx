@@ -22,17 +22,17 @@ export const ExperimentFormContext = createContext({} as IExperimentFormContext)
 export function FormProvider({ children }: any) {
     const formFields: { [key: number]: (keyof ExperimentTypeSchema)[] } = {
         1: ['title', 'authorship', 'publicationYear', 'publicationType', 'publicationVenue', 'pagesNumber'],
-        2: ['documentation'],
-        3: ['experimentPlanning'],
-        4: ['discussion'],
-        5: ['executionSelection'],
+        2: ['experimentPlanning'],
+        3: ['executionSelection'],
+        4: ['analysis'],
+        5: ['discussion'],
         6: ['evaluation'],
-        7: ['conclusionsFutureWork'],
-        8: ['references'],
+        7: ['documentation'],
+        8: ['acknowledgements'],
         9: ['appendices'],
-        10: ['acknowledgements'],
-        11: ['package'],
-        12: ['analysis']
+        10: ['conclusionsFutureWork'],
+        11: ['references'],
+        12: ['package']
     }
 
     const totalForms = 12
@@ -69,6 +69,7 @@ export function FormProvider({ children }: any) {
         }
 
         const currentFormField = formFields[currentForm]
+        console.log(trigger)
         const validForm = await trigger(currentFormField)
 
         if(validForm) {

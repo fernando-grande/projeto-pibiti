@@ -13,6 +13,7 @@ import { packageSchema } from "./package/package"
 import { analysisSchema } from "./analysis/analysis"
 
 export const experimentSchema = z.object({
+    id: z.string().optional(),
     title: z.string().min(1),
     authorship: z.string().min(1),
     publicationYear: z.number().int(),
