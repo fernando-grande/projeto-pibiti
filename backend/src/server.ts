@@ -47,6 +47,20 @@ app.get('/experimentsData', async (req: any, res: any) => {
     }
 })
 
+//////////////////////////////////////////////////////////////
+// BUSCA SIMPLES
+app.get('/simpleSearch', async (req: any, res: any) => {
+    const { simpleSearchData } = req.querry
+
+    const results = await prisma.experimentFormData.findMany({
+        where: {
+            simpleSearchData
+        }
+    })
+})
+
+//////////////////////////////////////////////
+
 const server = app.listen(port, () => {
     console.log('App running!')
 })
