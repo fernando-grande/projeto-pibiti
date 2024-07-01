@@ -32,6 +32,10 @@ export function ExperimentPlanning() {
             <input id="experimentPlanning-parameters" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.parameters')} />
             {errors.experimentPlanning?.parameters && <span>{errors.experimentPlanning.parameters.message}</span>}
 
+            <label htmlFor="experimentPlanning-variables">Parameters: </label>
+            <input id="experimentPlanning-variables" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.variables')} />
+            {errors.experimentPlanning?.variables && <span>{errors.experimentPlanning.variables.message}</span>}
+
             <label htmlFor="experimentPlanning-experimentDesign">Experiment Design: </label>
             <input id="experimentPlanning-experimentDesign" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.experimentDesign')} />
             {errors.experimentPlanning?.experimentDesign && <span>{errors.experimentPlanning.experimentDesign.message}</span>}
