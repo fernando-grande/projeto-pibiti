@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 import { dataBaseConnection } from "./dataBaseConnection";
 
 const { experimentSchema } = require('../../frontend/src/libs/zod/experiment/experiment')
-import { ExperimentFormData, ExperimentFormDataModel } from "./schemaTypegoose";
+import { ExperimentModel } from "./schemaMongoose";
 
 dotenv.config()
 
@@ -27,7 +27,7 @@ app.post('/experiments', async (req: Request, res: Response) => {
     try {
         const validExperimentData = experimentSchema.parse(experimentFormData)
 
-        const insertExperimentData = new ExperimentFormDataModel(validExperimentData)
+        const insertExperimentData = new ExperimentModel(validExperimentData)
         await insertExperimentData.save()
 
         console.log("Data was inserted!")
@@ -42,15 +42,62 @@ app.post('/experiments', async (req: Request, res: Response) => {
 
 })
 
-app.get('/serach/simple', async (req: Request, res: Response) => {
+// -------------------- SIMPLE SEARCH ------------------------------ //
+
+app.get('/search/simple', async (req: Request, res: Response) => {
     const searchString = req.query.q as string
 
     try {
         const regex = new RegExp(searchString, 'i')
 
-        const simpleSearch = await ExperimentFormDataModel.find({
+        const simpleSearch = await ExperimentModel.find({
             $or: [
-
+                { title: { $regex: regex } },
+                { authorship: { $regex: regex } },
+                { publicationType: { $regex: regex } },
+                { publicationVenue: { $regex: regex } },
+                { 'experimentPlanning.goals': { $regex: regex } },
+                { 'experimentPlanning.experimentalUnits': { $regex: regex } },
+                { 'experimentPlanning.experimentalMaterial': { $regex: regex } },
+                { 'experimentPlanning.tasks': { $regex: regex } },
+                { 'experimentPlanning.hypotheses': { $regex: regex } },
+                { 'experimentPlanning.parameters': { $regex: regex } },
+                { 'experimentPlanning.variables': { $regex: regex } },
+                { 'experimentPlanning.experimentDesign': { $regex: regex } },
+                { 'experimentPlanning.analysisProcedure': { $regex: regex } },
+                { 'executionSelection.preparation': { $regex: regex } },
+                { 'executionSelection.deviations': { $regex: regex } },
+                { 'analysis.descriptiveStatistics': { $regex: regex } },
+                { 'analysis.dataSetPreparation': { $regex: regex } },
+                { 'analysis.hypothesisTesting': { $regex: regex } },
+                { 'analysis.whatQualitativeAnalysisPerformed': { $regex: regex } },
+                { 'analysis.howDataHasBeenAnalyzed': { $regex: regex } },
+                { 'discussion.evaluationOfResultsAndImplications': { $regex: regex } },
+                { 'discussion.threatsValidity': { $regex: regex } },
+                { 'discussion.inferences': { $regex: regex } },
+                { 'discussion.lessonsLearned': { $regex: regex } },
+                { 'documentation.template': { $regex: regex } },
+                { 'documentation.observationsAboutTemplateUsed': { $regex: regex } },
+                { 'documentation.abstract.objective': { $regex: regex } },
+                { 'documentation.abstract.abstractBackground': { $regex: regex } },
+                { 'documentation.abstract.methods': { $regex: regex } },
+                { 'documentation.abstract.results': { $regex: regex } },
+                { 'documentation.abstract.limitations': { $regex: regex } },
+                { 'documentation.abstract.conclusions': { $regex: regex } },
+                { 'documentation.abstract.keywords': { $regex: regex } },
+                { 'documentation.introduction.problemStatement': { $regex: regex } },
+                { 'documentation.introduction.researchObjectives': { $regex: regex } },
+                { 'documentation.introduction.context': { $regex: regex } },
+                { 'documentation.relatedWork.technologyUnderInvestigation': { $regex: regex } },
+                { 'documentation.relatedWork.alternativeTechnologies': { $regex: regex } },
+                { 'documentation.relatedWork.relatedStudies': { $regex: regex } },
+                { 'documentation.relatedWork.relevancePractice': { $regex: regex } },
+                { 'acknowledgements.text': { $regex: regex } },
+                { 'appendices.appendices': { $regex: regex } },
+                { 'conclusionsFutureWork.summary': { $regex: regex } },
+                { 'conclusionsFutureWork.impact': { $regex: regex } },
+                { 'conclusionsFutureWork.futureWork': { $regex: regex } },
+                { 'references.references': { $regex: regex } },
             ]
         }).exec()
         return res.json(simpleSearch)
@@ -60,19 +107,7 @@ app.get('/serach/simple', async (req: Request, res: Response) => {
     }
 })
 
-//////////////////////////////////////////////////////////////
-// BUSCA SIMPLES
-app.get('/simpleSearch', async (req: any, res: any) => {
-    const { simpleSearchData } = req.querry
-
-    const results = await prisma.experimentFormData.findMany({
-        where: {
-            simpleSearchData
-        }
-    })
-})
-
-//////////////////////////////////////////////
+// ----------------------------------------------------------------- //
 
 const server = app.listen(port, () => {
     console.log('App running!')
