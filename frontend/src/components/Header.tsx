@@ -1,9 +1,18 @@
 import searchImage from "./images/search.png"
 import { useNavigate } from "react-router-dom";
 import { Nav } from "./Nav";
+import { useState } from "react";
 
 export function Header() {
     const navigate = useNavigate()
+
+    const [searchString, setSearchString] = useState<string>('')
+
+    const submitSimpleSearch = () => {
+        if(searchString) {
+            navigate('/experiments-repository/${searchString}')
+        }
+    }
     return (
         <>
         <header className="h-full box-border bg-emerald-500
@@ -14,11 +23,17 @@ export function Header() {
                 onClick={() => navigate('/')}>
                 PSEE
             </button>
-            <input type="text" placeholder="Search experiment..." className="justify-center h-9 w-full border-solid 
+            <input type="text" 
+                placeholder="Search experiment..." 
+                className="justify-center h-9 w-full border-solid 
                 border-b-[1px] border-l-[1px] border-t-[1px] rounded-l-sm border-opacity-30 p-2 md:w-full border-black
-                focus:ring-black"/>
+                focus:ring-black"
+                onBlur={(e) => setSearchString(e.target.value)}
+            />
             <button className="h-9 border-solid border-black border-r-[1px] border-t-[1px] border-b-[1px] border-l-[1px] 
-                rounded-r-sm border-opacity-30 mr-6 bg-slate-300 p-1 w-16 ">
+                rounded-r-sm border-opacity-30 mr-6 bg-slate-300 p-1 w-16 "
+                onClick={submitSimpleSearch} disabled={!searchString}
+            >
                 <img src={searchImage} alt="Search" />
             </button>
             <button className="hidden md:block h-full w-48 border-solid border-[1px] border-black"

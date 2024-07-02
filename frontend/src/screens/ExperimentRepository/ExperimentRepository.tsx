@@ -1,5 +1,5 @@
 import { MainLayout } from "../../layouts/screens/MainLayout"
-import { ExperimentsList } from "./ExperimentsList"
+import { ExperimentsList } from "./ShowExperiments"
 
 export function ExperimentRepository() {
 

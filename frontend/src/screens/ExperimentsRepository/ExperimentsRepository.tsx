@@ -1,5 +1,5 @@
 import { MainLayout } from "../../layouts/screens/MainLayout";
-import { ExperimentData } from "./getExperimentData";
+import { ExperimentData } from "./getSimpleSearchData";
 
 export function ExperimentsRepository () {
     return (

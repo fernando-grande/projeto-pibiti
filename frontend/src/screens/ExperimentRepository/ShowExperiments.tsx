@@ -10,7 +10,7 @@ export function ExperimentsList() {
     useEffect(() => {
         const getExperimentsData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/experimentsData')
+                const response = await axios.get('http://localhost:3000/search/simple')
                 console.log(response)
                 setExperimentsData(response.data)
             } catch(error) {
