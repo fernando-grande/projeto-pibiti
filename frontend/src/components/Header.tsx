@@ -10,7 +10,7 @@ export function Header() {
 
     const submitSimpleSearch = () => {
         if(searchString) {
-            navigate('/experiments-repository/${searchString}')
+            navigate(`/experiments-repository/${searchString}`)
         }
     }
     return (
@@ -40,7 +40,8 @@ export function Header() {
                 onClick={() => navigate('/about')}>
                 ABOUT
             </button>
-            <button className="hidden md:block h-full w-48 border-solid border-[1px] border-black">
+            <button className="hidden md:block h-full w-48 border-solid border-[1px] border-black"
+                onClick={() => navigate('/experiments-repository')}>
                 EXPERIMENTS
             </button>
             <button className="hidden md:block h-full w-48 border-solid border-[1px] border-black"

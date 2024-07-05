@@ -42,6 +42,35 @@ app.post('/experiments', async (req: Request, res: Response) => {
 
 })
 
+app.get('/search/all', async (req: Request, res: Response) => {
+    try {
+      const experiments = await ExperimentModel.find(); 
+      res.json(experiments); 
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+
+
+  app.get('/experiment/:id', async (req: Request, res: Response) => {
+    const experimentId = req.params.id
+
+    try {
+        const experiment = await ExperimentModel.findById(experimentId)
+        console.log(experiment)
+        if (!experiment) {
+            return res.status(404).json({ error: 'Experiment not found' });
+        }
+
+        res.json(experiment);
+    } catch (error) {
+        console.error('Error fetching experiment:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+  })
+
 // -------------------- SIMPLE SEARCH ------------------------------ //
 
 app.get('/search/simple', async (req: Request, res: Response) => {

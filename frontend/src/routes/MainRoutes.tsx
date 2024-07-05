@@ -3,6 +3,7 @@ import { Home } from "../screens/Home";
 import { RegisterExperiment } from "../screens/RegisterExperiments/RegisterExperiment";
 import { RegisterExperimentForm } from "../screens/RegisterExperiments/RegisterExperimentForm";
 import { ExperimentsRepository } from "../screens/ExperimentsRepository/ExperimentsRepository";
+import { ExperimentDetails } from "../screens/ExperimentsRepository/ExperimentDetails";
 
 export function MainRoutes() {
     return (
@@ -12,6 +13,7 @@ export function MainRoutes() {
             <Route path="/register-experiment-form" element={<RegisterExperimentForm/>} />
             <Route path="/experiments-repository" element={<ExperimentsRepository/>}/>
             <Route path="/experiments-repository/:searchString" element={<ExperimentsRepository/>}/>
+            <Route path="/experiments-details/:id" element={<ExperimentDetails/>}/>
         </Routes>
     );
 };
