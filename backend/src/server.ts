@@ -138,6 +138,31 @@ app.get('/search/simple', async (req: Request, res: Response) => {
 
 // ----------------------------------------------------------------- //
 
+app.post('/search/advanced', async (req: Request, res: Response) => {
+    try {
+        const filter = req.body
+        console.log(filter)
+
+        const query = {}
+        for (const key in filter) {
+            if (typeof filter[key] === 'object') {
+                for (const nestedKey in filter[key]) {
+                    // @ts-ignore
+                    query[`${key}.${nestedKey}`] = filter[key][nestedKey]
+                }
+            } else {
+                // @ts-ignore
+                query[key] = filter[key]
+            }
+        }
+
+        const experiments = await ExperimentModel.find(query)
+        res.status(200).json(experiments)
+    } catch (error) {
+        res.status(500).json({ error: 'Error in advanced search!' })
+    }
+})
+
 const server = app.listen(port, () => {
     console.log('App running!')
 })

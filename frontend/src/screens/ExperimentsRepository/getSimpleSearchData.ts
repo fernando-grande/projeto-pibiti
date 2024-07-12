@@ -1,4 +1,6 @@
 import axios from "axios";
+import { ExperimentTypeSchema } from "../../libs/zod/experiment/experiment";
+type FilteredData = Partial<ExperimentTypeSchema>
 
 export const getSimpleSearchData = async (searchString: string) => {
     try {
@@ -28,3 +30,12 @@ export const getAllExperiments = async () => {
         throw new Error (`Error in search data of Experiment from id: ${experimentId}`)
     }
   }
+
+  // export const getAdvancedSearchData = async (filteredData: FilteredData) => {
+  //   try {
+  //     const response = await axios.post(`http://localhost:3000/search/advanced`, filteredData)
+  //     return response.data;
+  //   } catch (error) {
+  //     throw new Error('Error in advanced search!')
+  //   }
+  // }

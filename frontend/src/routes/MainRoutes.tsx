@@ -13,7 +13,7 @@ export function MainRoutes() {
             <Route path="/register-experiment-form" element={<RegisterExperimentForm/>} />
             <Route path="/experiments-repository" element={<ExperimentsRepository/>}/>
             <Route path="/experiments-repository/:searchString" element={<ExperimentsRepository/>}/>
-            <Route path="/experiments-details/:id" element={<ExperimentDetails/>}/>
+            <Route path="/experiments-repository/details/:id" element={<ExperimentDetails/>}/>
         </Routes>
     );
 };

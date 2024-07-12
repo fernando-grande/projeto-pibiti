@@ -32,7 +32,7 @@ export function ExperimentPlanning() {
             <input id="experimentPlanning-parameters" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.parameters')} />
             {errors.experimentPlanning?.parameters && <span>{errors.experimentPlanning.parameters.message}</span>}
 
-            <label htmlFor="experimentPlanning-variables">Parameters: </label>
+            <label htmlFor="experimentPlanning-variables">Variables: </label>
             <input id="experimentPlanning-variables" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.variables')} />
             {errors.experimentPlanning?.variables && <span>{errors.experimentPlanning.variables.message}</span>}
 
@@ -98,7 +98,7 @@ export function ExperimentPlanning() {
             <input id="experimentPlanning-typeDesignExperiment-twoFactorsWithTwoTreatments" type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.typeDesignExperiment.twoFactorsWithTwoTreatments')} />
             {errors.experimentPlanning?.typeDesignExperiment?.twoFactorsWithTwoTreatments && <span>{errors.experimentPlanning.typeDesignExperiment.twoFactorsWithTwoTreatments.message}</span>}
 
-            <label htmlFor="experimentPlanning-typeDesignExperiment-moreThanTwoFactorsEachTwoTreatments">More than Two Factors each Two Treatments</label>
+            <label htmlFor="experimentPlanning-typeDesignExperiment-moreThanTwoFactorsEachTwoTreatments">More than Two Factors each with Two Treatments</label>
             <input id="experimentPlanning-typeDesignExperiment-moreThanTwoFactorsEachTwoTreatments" type="checkbox" className="w-96 border-[1px] p-2 rounded-md mb-6" {...register('experimentPlanning.typeDesignExperiment.moreThanTwoFactorsEachTwoTreatments')} />
             {errors.experimentPlanning?.typeDesignExperiment?.moreThanTwoFactorsEachTwoTreatments && <span>{errors.experimentPlanning.typeDesignExperiment.moreThanTwoFactorsEachTwoTreatments.message}</span>}
 
