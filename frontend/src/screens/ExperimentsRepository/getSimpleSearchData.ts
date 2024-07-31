@@ -1,6 +1,4 @@
 import axios from "axios";
-import { ExperimentTypeSchema } from "../../libs/zod/experiment/experiment";
-type FilteredData = Partial<ExperimentTypeSchema>
 
 export const getSimpleSearchData = async (searchString: string) => {
     try {
