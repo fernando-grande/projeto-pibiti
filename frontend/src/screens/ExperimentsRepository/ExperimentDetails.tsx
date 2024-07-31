@@ -173,7 +173,7 @@ export function ExperimentDetails() {
         <strong>The Experimental Package is Informed?</strong> {experiment.package.isExperimentalPackageInformed.toString()} <br />
         <strong>Package url:</strong> {experiment.package.url} <br /> <br />
 
-        {JSON.stringify(experiment, null, 2)}
+        {/* {JSON.stringify(experiment, null, 2)} */}
       </div>
     </MainLayout>
   );
