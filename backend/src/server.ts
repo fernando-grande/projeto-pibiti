@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 
 import { dataBaseConnection } from "./dataBaseConnection";
 
-const { experimentSchema } = require('../../frontend/src/libs/zod/experiment/experiment')
+const { experimentSchema } = require('./zod/experiment/experiment');
 import { ExperimentModel } from "./schemaMongoose";
 
 dotenv.config()
