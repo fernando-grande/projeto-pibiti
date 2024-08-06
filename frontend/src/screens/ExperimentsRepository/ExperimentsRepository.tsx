@@ -25,6 +25,7 @@ export function ExperimentsRepository() {
           setSearchResults(experimentData);
         }
       } catch (error) {
+        console.log(error)
         setError("Error fetching data");
       } finally {
         setLoading(false);

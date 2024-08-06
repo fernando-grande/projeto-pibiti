@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_URL = import.meta.env.BACKEND_URL;
 
+console.log(API_URL)
+
 export const getSimpleSearchData = async (searchString: string) => {
     try {
         const response = await axios.get(`${API_URL}/search/simple`, {
