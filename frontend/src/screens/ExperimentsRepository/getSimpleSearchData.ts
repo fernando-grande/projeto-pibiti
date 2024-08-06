@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const API_URL = import.meta.env.BACKEND_URL;
+
 export const getSimpleSearchData = async (searchString: string) => {
     try {
-        const response = await axios.get('http://localhost:3000/search/simple', {
+        const response = await axios.get(`${API_URL}/search/simple`, {
             params: { q:searchString }
         })
         return response.data
@@ -13,7 +15,7 @@ export const getSimpleSearchData = async (searchString: string) => {
 
 export const getAllExperiments = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/search/all')
+      const response = await axios.get(`${API_URL}/search/all`)
       return response.data;
     } catch (error) {
       throw new Error('Error in search all results');
@@ -22,7 +24,7 @@ export const getAllExperiments = async () => {
 
   export const getExperimentById = async (experimentId: string) => {
     try {
-        const response = await axios.get(`http://localhost:3000/experiment/${experimentId}`)
+        const response = await axios.get(`${API_URL}/experiment/${experimentId}`)
         return response.data;
     } catch (error) {
         throw new Error (`Error in search data of Experiment from id: ${experimentId}`)

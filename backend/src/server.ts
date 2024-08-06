@@ -5,6 +5,12 @@ const bodyParser = require('body-parser')
 import dotenv from "dotenv"
 import mongoose from "mongoose";
 
+const corsOptions = {
+    origin: 'https://experiment-portal.netlify.app',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type',
+};
+
 import { dataBaseConnection } from "./dataBaseConnection";
 
 const { experimentSchema } = require('./zod/experiment/experiment');
@@ -17,7 +23,7 @@ const port = 3000
 
 dataBaseConnection()
 
-app.use(cors())
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json())
 
